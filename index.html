@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esther Osibajo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111110;
+    --muted: #555552;
+    --faint: #999994;
+    --border: #E0DED8;
+    --bg: #FFFFFF;
+    --accent: #111110;
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.75rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  /* LAYOUT */
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  /* HEADER */
+  .cv-header {
+    padding: 3.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .cv-header h1 {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+  }
+
+  .cv-header .subtitle {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .cv-contact {
+    text-align: right;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .cv-contact a {
+    color: var(--muted);
+    text-decoration: none;
+    display: block;
+    transition: color 0.15s;
+  }
+
+  .cv-contact a:hover { color: var(--black); }
+
+  /* CV SECTIONS */
+  .cv-section {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cv-section:last-child { border-bottom: none; }
+
+  .cv-section-title {
+    font-family: var(--serif);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 400;
+    margin-bottom: 1.4rem;
+  }
+
+  /* EDUCATION */
+  .edu-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .edu-item:last-child { margin-bottom: 0; }
+
+  .edu-school {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .edu-degree {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .edu-detail {
+    font-size: 12px;
+    color: var(--faint);
+  }
+
+  .edu-date {
+    font-size: 12px;
+    color: var(--faint);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: start;
+  }
+
+  .exp-item:last-child { margin-bottom: 0; }
+
+  .exp-role {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 1px;
+  }
+
+  .exp-org {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .exp-date {
+    font-size: 12px;
+    color: var(--faint);
+    white-space: nowrap;
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  /* RESEARCH */
+  .research-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .research-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .research-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 0.3rem;
+  }
+
+  .research-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--black);
+  }
+
+  .research-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.15s;
+  }
+
+  .research-title a:hover {
+    border-bottom-color: var(--black);
+  }
+
+  .research-date {
+    font-size: 12px;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+
+  .research-meta {
+    font-size: 12px;
+    color: var(--faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .research-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* SKILLS */
+  .skills-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .skills-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skills-table tr:last-child { border-bottom: none; }
+
+  .skills-table td {
+    padding: 0.65rem 0;
+    font-size: 13px;
+    vertical-align: top;
+  }
+
+  .skills-table td:first-child {
+    width: 160px;
+    color: var(--faint);
+    font-size: 12px;
+    padding-right: 1.5rem;
+    padding-top: 0.7rem;
+  }
+
+  .skills-table td:last-child {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .cv-header { grid-template-columns: 1fr; }
+    .cv-contact { text-align: left; }
+    .edu-item, .exp-item, .research-header { grid-template-columns: 1fr; }
+    .edu-date, .exp-date, .research-date { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#">Esther Osibajo</a>
+    <ul class="nav-links">
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#skills">Skills</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="cv-header">
+    <div>
+      <h1>Esther Anuoluwapo Osibajo</h1>
+      <p class="subtitle">
+        Economics & Mathematics · Minor in Africana Studies<br>
+        Certificate in Finance & Banking · College of the Holy Cross, '27<br>
+        Interests: economic research, finance, consulting, graduate study
+      </p>
+    </div>
+    <div class="cv-contact">
+      <a href="mailto:eaosib27@g.holycross.edu">eaosib27@g.holycross.edu</a>
+      <a href="tel:8627725068">(862) 772-5068</a>
+      <a href="https://linkedin.com/in/YOURURL" target="_blank">LinkedIn ↗</a>
+      <a href="#">Resume ↗</a>
+      <span style="color: var(--faint); display: block;">Newark, NJ</span>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="cv-section" id="education">
+    <p class="cv-section-title">Education</p>
+
+    <div class="edu-item">
+      <div>
+        <p class="edu-school">College of the Holy Cross</p>
+        <p class="edu-degree">B.A. in Economics & Mathematics; Minor in Africana Studies</p>
+        <p class="edu-detail">GPA: 3.4 · Dean's List (First Honors) · Certificate in Finance & Banking</p>
+        <p class="edu-detail" style="margin-top: 3px;">Coursework: Real Analysis, Linear Algebra, Multivariable Calculus, Statistical Analysis, Nonlinear Dynamics & Chaos, International Finance, Network Theory, Intro to Python</p>
+      </div>
+      <p class="edu-date">Expected May 2027<br>Worcester, MA</p>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <p class="edu-school">Deerfield Academy</p>
+        <p class="edu-degree">AP Scholar with Distinction · College Board Class of 2023 National African American Recognition Awardee</p>
+      </div>
+      <p class="edu-date">May 2023<br>Deerfield, MA</p>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="cv-section" id="experience">
+    <p class="cv-section-title">Experience</p>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Real Estate Private Equity Intern</p>
+        <p class="exp-org">Project Destined · Remote</p>
+        <p class="exp-desc">Selected for a competitive institutional underwriting program. Underwrote three multifamily deals evaluating NOI, leverage, IRR, and downside risk. Presented investment recommendations in a pitch-style competition to industry professionals.</p>
+      </div>
+      <p class="exp-date">Spring 2026</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Comparative Strategy Extern</p>
+        <p class="exp-org">PwC × National Organization on Disability · Remote</p>
+        <p class="exp-desc">Produced a market landscape deck and comparative analysis of four peer organizations. Delivered actionable strategies to enhance NOD's competitive positioning, partnerships, and revenue potential in the disability nonprofit space.</p>
+      </div>
+      <p class="exp-date">Spring 2025</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Deal Sourcing Extern</p>
+        <p class="exp-org">IgniteXL Ventures · Remote</p>
+        <p class="exp-desc">Evaluated early-stage beauty & wellness startups for investment thesis alignment. Conducted due diligence on 10 submissions and designed an investment summary presenting valuation metrics and market insights.</p>
+      </div>
+      <p class="exp-date">Summer 2024</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Teacher's Assistant</p>
+        <p class="exp-org">Mathematics, CS & Economics Departments · College of the Holy Cross</p>
+        <p class="exp-desc">Supports introductory economics and upper-level mathematics/CS courses through weekly office hours, in-class assistance, and grading across multiple sections.</p>
+      </div>
+      <p class="exp-date">Fall 2025–Present</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Resident Assistant</p>
+        <p class="exp-org">College of the Holy Cross</p>
+        <p class="exp-desc">Manages a residence hall of 25–65 residents. Organizes 8 student events for 300 residents on a $5,000 budget.</p>
+      </div>
+      <p class="exp-date">Fall 2024–Present</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Co-Director of Events</p>
+        <p class="exp-org">Black Student Union · College of the Holy Cross</p>
+        <p class="exp-desc">Manages a $40,000 annual budget across 11 events including the BSU's 55th Anniversary Weekend (500 attendees) and a Fashion Show (1,000 attendees).</p>
+      </div>
+      <p class="exp-date">Fall 2024–Spring 2026</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Tutor</p>
+        <p class="exp-org">Self-Employed · Remote</p>
+        <p class="exp-desc">Provides 1:1 tutoring in Algebra, Calculus, US History, and English to 40 students, resulting in an average 25% improvement in test scores.</p>
+      </div>
+      <p class="exp-date">2023–Present</p>
+    </div>
+
+  </div>
+
+  <!-- RESEARCH & WRITING -->
+  <div class="cv-section" id="research">
+    <p class="cv-section-title">Research & Writing</p>
+
+    <div class="research-item">
+      <div class="research-header">
+        <p class="research-title"><a href="#">Investigating the Impact of the 2025 Trade Wars on US Domestic Prices</a></p>
+        <p class="research-date">May 2026</p>
+      </div>
+      <p class="research-meta">Quantitative Microeconomics · ECON 265 · College of the Holy Cross</p>
+      <p class="research-desc">Difference-in-differences analysis of the 2025 auto tariffs using BLS CPI data for new and used vehicles. Finds a statistically significant decrease in new vehicle prices post-tariff — contrary to standard pass-through predictions — and proposes consumer substitution toward used vehicles as the mechanism.</p>
+    </div>
+
+    <div class="research-item">
+      <div class="research-header">
+        <p class="research-title"><a href="#">The South African Rand: Risk Assessment, Exchange Rate Dynamics & Policy</a></p>
+        <p class="research-date">Spring 2026</p>
+      </div>
+      <p class="research-meta">International Finance · ECON 336 · College of the Holy Cross</p>
+      <p class="research-desc">Three-part paper assessing South Africa's macroeconomic risk profile, modeling short-run USD/ZAR fluctuations through UIP and double-panel analysis tied to live geopolitical events, and recommending a freely floating exchange rate regime grounded in monetary policy autonomy and external creditor strength.</p>
+    </div>
+
+    <div class="research-item">
+      <div class="research-header">
+        <p class="research-title"><a href="#">Pathways Between Boroughs: A Network Model of the NYC Subway System</a></p>
+        <p class="research-date">Spring 2026</p>
+      </div>
+      <p class="research-meta">Network Theory · MATH 392 · College of the Holy Cross · Co-authored with D. Lucero & I. Henriquez</p>
+      <p class="research-desc">Python-built spatial network of NYC community districts using weighted degree, degree centrality, and betweenness centrality to map transit connectivity and equity across boroughs. Finds connectivity concentrated in Manhattan and parts of Brooklyn; Staten Island fully disconnected from the MTA network.</p>
+    </div>
+
+    <div class="research-item">
+      <div class="research-header">
+        <p class="research-title"><a href="#">Argentina's Currency Crisis Through the UIP Lens</a></p>
+        <p class="research-date">Fall 2025</p>
+      </div>
+      <p class="research-meta">International Finance · ECON 336 · College of the Holy Cross</p>
+      <p class="research-desc">Applies the expanded Uncovered Interest Parity framework to explain Argentina's peso depreciation and reserve depletion under Milei's crawling band stabilization plan. Demonstrates how negative investor sentiment creates self-fulfilling dynamics that standard models fail to capture.</p>
+    </div>
+
+    <div class="research-item">
+      <div class="research-header">
+        <p class="research-title"><a href="#">Referee Report: Japanese American Internment & College Attainment</a></p>
+        <p class="research-date">2026</p>
+      </div>
+      <p class="research-meta">Quantitative Microeconomics · ECON 265 · College of the Holy Cross</p>
+      <p class="research-desc">Critical evaluation of a difference-in-differences study on the long-run educational effects of WWII internment on Japanese Americans. Flags proxy misclassification concerns, cohort justification gaps, and generalizability limitations. Recommends acceptance with major revisions.</p>
+    </div>
+
+    <div class="research-item">
+      <div class="research-header">
+        <p class="research-title"><a href="#">NOD Competitive Landscape Analysis</a></p>
+        <p class="research-date">Spring 2025</p>
+      </div>
+      <p class="research-meta">PwC × National Organization on Disability Externship</p>
+      <p class="research-desc">Market landscape deck identifying key trends, competitor positioning, and strategic gaps in the disability nonprofit space. Produced as part of a competitive PwC externship; delivered actionable recommendations on partnerships and revenue diversification.</p>
+    </div>
+
+  </div>
+
+  <!-- SKILLS -->
+  <div class="cv-section" id="skills">
+    <p class="cv-section-title">Skills</p>
+    <table class="skills-table">
+      <tr>
+        <td>Econometrics & Stats</td>
+        <td>Stata, R, difference-in-differences, ETS forecasting, regression analysis, statistical diagnostics</td>
+      </tr>
+      <tr>
+        <td>Programming</td>
+        <td>Python (GeoPandas, NetworkX, Matplotlib), LaTeX</td>
+      </tr>
+      <tr>
+        <td>Finance & Modeling</td>
+        <td>Excel (Pivot Tables, financial modeling), IRR, NOI, UIP / FX analysis, real estate underwriting</td>
+      </tr>
+      <tr>
+        <td>Software</td>
+        <td>Microsoft Office Suite, Google Workspace</td>
+      </tr>
+      <tr>
+        <td>Languages</td>
+        <td>English (native), Yoruba (fluent), Spanish (intermediate)</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>
